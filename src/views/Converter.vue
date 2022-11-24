@@ -10,11 +10,8 @@
           <v-row justify="space-between" no-gutters>
             <v-col cols="12" md="5">
               <v-row no-gutters>
-                <v-col class="px-1" cols="3">
-                  <v-select @change="convert" label="Из" v-model="selected[0]" :items="countries"></v-select>
-                </v-col>
                 <v-col class="px-1" cols="9">
-                  <v-text-field @input="convert"  v-model="calc" type="number"></v-text-field>
+                  <v-text-field @input="convert"  v-model="calc" ></v-text-field>
                 </v-col>
               </v-row>
             </v-col>
@@ -22,9 +19,6 @@
               <v-row no-gutters>
                 <v-col class="px-1" cols="9">
                   <v-text-field v-model="result"  type="number" readonly></v-text-field>
-                </v-col>
-                <v-col class="px-1" cols="3">
-                  <v-select @change="convert" label="В" v-model="selected[1]" :items="countries"></v-select>
                 </v-col>
               </v-row>
             </v-col>
@@ -53,13 +47,15 @@ export default {
         Value: 1,
         Nominal: 1
       } 
-      
-      let firstValute = this.valutes[this.selected[0]] ?? defaultValute,
-          firstValuteValue = firstValute.Value * Number(this.calc),
-          firstValuteNominal = firstValute.Nominal
+      const calc = this.calc
+      const value = calc.replace(/[^0-9,\s]/g,"")
+      const valute = calc.replace(/[^a-zA-Z]+/g,'').toUpperCase()
 
+      let firstValute = this.valutes[valute.split('IN')[0]] ?? defaultValute,
+          firstValuteValue = firstValute.Value * Number(value),
+          firstValuteNominal = firstValute.Nominal
      
-      let secondValute = this.valutes[this.selected[1]] ?? defaultValute,
+      let secondValute = this.valutes[valute.split('IN')[1]] ?? defaultValute,
           secondValuteValue = secondValute.Value,
           secondValuteNominal = secondValute.Nominal
 
