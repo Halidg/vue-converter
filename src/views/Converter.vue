@@ -11,14 +11,14 @@
             <v-col cols="12" md="5">
               <v-row no-gutters>
                 <v-col class="px-1" cols="9">
-                  <v-text-field @input="convert"  v-model="calc" ></v-text-field>
+                  <v-text-field @input="convert" placeholder="Ввод"  v-model="calc" ></v-text-field>
                 </v-col>
               </v-row>
             </v-col>
             <v-col cols="12" md="5">
               <v-row no-gutters>
                 <v-col class="px-1" cols="9">
-                  <v-text-field v-model="result"  type="number" readonly></v-text-field>
+                  <v-text-field v-model="result" placeholder="Вывод"  type="number" readonly></v-text-field>
                 </v-col>
               </v-row>
             </v-col>
